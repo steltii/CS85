@@ -1,0 +1,12 @@
+void setup()
+{
+    Serial.begin(9600);                             //Begin serial communication at 9600 bps
+}
+
+void loop()
+{
+  int sensorValue = analogRead(A0);                 //Define sensorvalue to value gotten from pin A0
+  float voltage= sensorValue * (5.0 / 1023.0);      //Create a float value to change AD converters value to voltage(V)
+  Serial.println(voltage);                          //Print voltage to serial monitor
+  delay(1);                                         //Delay between printing values to serial monitor
+}
