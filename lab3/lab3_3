@@ -19,7 +19,7 @@ void loop()
   	Serial.print("A0: ");                         //Print A0 to serial monitor
     Serial.print(sensorValue);                    //Print sensorValue to serial monitor
   
-  	Serial.print("\t U: ");                       //Print U to serial monitor
+  	Serial.print("\t U2: ");                       //Print U to serial monitor
     Serial.print(U2);                             //Print value U2 to serial monitor
   	
   	Serial.print("\t Rx: ");                      //Print Rx to serial monitor
