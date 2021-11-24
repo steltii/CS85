@@ -10,19 +10,19 @@ void loop()
     double sensorValue = analogRead(A0);          //Declare sensorValue to read from analog pin A0
     double U2 = sensorValue * (5.0 / 1023.0);     //Changes A0 pins data from 0-1023 to 0-5, making it appear as Volts
   
-  	double U3=U1-U2;                              //Declares that U3 is U1 subracted by U2
-  	
-  	double I=U3/R1;                               //Declares I to be U3 divided by R1
+    double U3=U1-U2;                              //Declares that U3 is U1 subracted by U2
+    
+    double I=U3/R1;                               //Declares I to be U3 divided by R1
   
-  	double Rx=U2/I;                               //Declares Rx to be U2 divided by I
+    double Rx=U2/I;                               //Declares Rx to be U2 divided by I
   
-  	Serial.print("A0: ");                         //Print A0 to serial monitor
+    Serial.print("A0: ");                         //Print A0 to serial monitor
     Serial.print(sensorValue);                    //Print sensorValue to serial monitor
   
-  	Serial.print("\t U2: ");                      //Print U to serial monitor
+    Serial.print("\t U2: ");                      //Print U to serial monitor
     Serial.print(U2,4);                           //Print value U2 to serial monitor
-  	
-  	Serial.print("\t Rx: ");                      //Print Rx to serial monitor
+    
+    Serial.print("\t Rx: ");                      //Print Rx to serial monitor
     Serial.println(Rx,4);                         //Print value Rx to serial monitor
     delay(100);                                   //Delay between values
 }
