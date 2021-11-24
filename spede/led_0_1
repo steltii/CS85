@@ -1,0 +1,23 @@
+int myDelay = 200;
+
+void setup() {
+  pinMode(2, OUTPUT);       //Set output pins
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+
+  digitalWrite(2, LOW);     //Set all pins low (LEDs off)
+  digitalWrite(3, LOW);
+  digitalWrite(4, LOW);
+  digitalWrite(5, LOW);
+}
+
+void loop() {
+  
+  int Led = random(2, 6);   //Select random number between 2 and 6
+  digitalWrite(Led,HIGH);   //Turn on the selected LED asociated with random number
+  delay(myDelay);           //Delay what time LED stays on
+  digitalWrite(Led,LOW);    //Turn off the selected LED
+  delay(myDelay);           //Delay what time LED stays off
+  myDelay--;
+}
