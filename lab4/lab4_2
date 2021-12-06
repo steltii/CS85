@@ -1,0 +1,58 @@
+
+const int charge = 13;                                            // pin to charge the capacitor
+const int discharge = 11;                                         // pin to discharge the capacitor
+const int R1 = 10000;                                             // used resistor, 10k
+
+// variables for timer
+unsigned long start;                                              
+unsigned long elapsed;
+
+// variables for capacitance
+float microFarads;                                                 
+float nanoFarads;                                                 
+
+void setup() {
+  pinMode(charge, OUTPUT);                                        // set charge pin to output
+  digitalWrite(charge, LOW);                                      // set charge pin low (0 volts)
+  Serial.begin(9600);                                             // initialize serial communication at 9600 bps
+
+}
+
+void loop() {
+
+  digitalWrite(charge, HIGH);                                     // begin charging capacitor with charge pin
+  
+  start = millis();                                               // begin timer
+  
+  while(analogRead(A0) < 648){                                    // 647 is 63.2% of 1023, which corresponds to full-scale voltage
+  }
+  
+// Convert milliseconds to seconds and Farads to microFarads
+  microFarads = ((float)elapsed / R1) * 1000;
+  
+  elapsed= millis() - start;
+  Serial.print(elapsed);                                          // print the value to serial port
+  Serial.print(" mS    ");                                        // print units
+
+  if (microFarads > 1){
+    Serial.print((long)microFarads);                              // print the value to serial port
+    Serial.println(" microFarads");                               // print units and carriage return
+  }
+  else
+  {
+    // if value is smaller than one microFarad, convert to nanoFarads (10^-9 Farad).
+    // This is  a workaround because Serial.print will not print floats
+    nanoFarads = microFarads * 1000.0;                            // multiply by 1000 to convert to nanoFarads (10^-9 Farads)
+    Serial.print((long)nanoFarads);                               // print the value to serial port
+    Serial.println(" nanoFarads");                                // print units and carriage return
+  }
+  /* dicharge the capacitor  */
+  digitalWrite(charge, LOW);                                      // set charge pin to low
+  pinMode(discharge, OUTPUT);                                     // set discharge pin to output
+  digitalWrite(discharge, LOW);                                   // set discharge pin low
+  while(analogRead(A0) > 0){                                      // wait until capacitor is completely discharged
+  }
+  pinMode(discharge, INPUT);                                      // set discharge pin back to input
+
+  delay(2000);                                                    // software delay between charging
+}
