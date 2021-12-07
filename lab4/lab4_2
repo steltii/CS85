@@ -1,6 +1,5 @@
-
 const int charge = 13;                                            // pin to charge the capacitor
-const int discharge = 11;                                         // pin to discharge the capacitor
+
 const int R1 = 10000;                                             // used resistor, 10k
 
 // variables for timer
@@ -46,13 +45,12 @@ void loop() {
     Serial.print((long)nanoFarads);                               // print the value to serial port
     Serial.println(" nanoFarads");                                // print units and carriage return
   }
+  
   /* dicharge the capacitor  */
   digitalWrite(charge, LOW);                                      // set charge pin to low
-  pinMode(discharge, OUTPUT);                                     // set discharge pin to output
-  digitalWrite(discharge, LOW);                                   // set discharge pin low
+  
   while(analogRead(A0) > 0){                                      // wait until capacitor is completely discharged
   }
-  pinMode(discharge, INPUT);                                      // set discharge pin back to input
 
   delay(2000);                                                    // software delay between charging
 }
